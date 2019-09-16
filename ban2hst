@@ -1,0 +1,53 @@
+#!/bin/bash
+
+start() {
+  echo 'start'
+  while read line; do
+    echo $line | grep -v '#' > /dev/null
+    if [ $? -eq 0 ]; then
+      echo $line
+    fi
+  done < ./config
+  return 0
+}
+
+stop() {
+  echo 'stop'
+  return 0
+}
+
+usage() {
+cat <<EOS
+Usage: $0 [-e enable] [-d disable] [-h help] [-v version]
+EOS
+  return 0
+}
+
+version() {
+  echo 'version'
+}
+
+main() {
+  case $1 in
+    "-e")
+      start
+      ;;
+    "-d")
+      stop
+      ;;
+    "-h")
+      usage
+      ;;
+    "-v")
+      version
+      ;;
+    *)
+      echo "ban2hst: argument error" 1>&2
+      usage
+      exit 1
+      ;;
+  esac
+  exit 0 
+}
+
+main $@
