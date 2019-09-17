@@ -13,7 +13,7 @@ exec $SHELL -l
 ```
 
 ## How to use
-　
+
 - `config` ファイルにアクセス制限したいホストを記述
 - `ban2hst -e` でアクセス制限実行
 - `ban2hst -d` でアクセス制限解除
