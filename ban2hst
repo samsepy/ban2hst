@@ -1,12 +1,14 @@
 #!/bin/bash
 
-readonly PF_RULE_FILENAME='pf.conf'
-readonly CONFIG_FILENAME='config'
+readonly NAME='ban2hst'
+readonly ROOT_DIR="`pwd`"
+readonly PF_RULE_FILE="$ROOT_DIR/pf.conf"
+readonly CONFIG_FILE="$ROOT_DIR/config"
 readonly VERSION='0.9.0'
 
 start() {
   sudo pfctl -e
-  sudo pfctl -f $PF_RULE_FILENAME
+  sudo pfctl -f $PF_RULE_FILE
   echo
   echo "banned hosts:"
   while read line; do
@@ -14,7 +16,7 @@ start() {
     if [ $? -eq 0 ]; then
       echo "  $line"
     fi
-  done < $CONFIG_FILENAME
+  done < $CONFIG_FILE
   return 0
 }
 
@@ -31,7 +33,7 @@ EOS
 }
 
 version() {
-  echo "ban2hst $VERSION"
+  echo "$NAME $VERSION"
   return 0
 }
 
@@ -50,7 +52,7 @@ main() {
       version
       ;;
     *)
-      echo "ban2hst: argument error" 1>&2
+      echo "$NAME: argument error" 1>&2
       usage
       exit 1
       ;;
