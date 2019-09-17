@@ -7,9 +7,11 @@ readonly CONFIG_FILE="$ROOT_DIR/config"
 readonly VERSION='0.9.0'
 
 start() {
-  sudo pfctl -e
-  sudo pfctl -f $PF_RULE_FILE
-  echo
+  # TODO: エラーのハンドリング
+  sudo pfctl -e > /dev/null
+  sudo pfctl -f $PF_RULE_FILE > /dev/null
+  # TODO: ホスト側のIPが変化する可能性があるので定期的にテーブルの更新を行う
+  # while true; do sudo pfctl -Tr -t $NAME -f $CONFIG_FILE  > /dev/null; sleep 10; done &
   echo "banned hosts:"
   while read line; do
     echo $line | grep -v '#' > /dev/null
@@ -21,7 +23,7 @@ start() {
 }
 
 stop() {
-  sudo pfctl -d
+  sudo pfctl -d > /dev/null
   return 0
 }
 
