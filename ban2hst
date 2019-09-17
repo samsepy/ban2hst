@@ -38,6 +38,10 @@ version() {
 }
 
 main() {
+  if [ $# -gt 1 ]; then
+    echo "$NAME: argument number error" 1>&2
+    exit 1
+  fi
   case $1 in
     "-e")
       start
