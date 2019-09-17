@@ -1,18 +1,25 @@
 #!/bin/bash
 
+readonly PF_RULE_FILENAME='pf.conf'
+readonly CONFIG_FILENAME='config'
+readonly VERSION='0.9.0'
+
 start() {
-  echo 'start'
+  sudo pfctl -e
+  sudo pfctl -f $PF_RULE_FILENAME
+  echo
+  echo "banned hosts:"
   while read line; do
     echo $line | grep -v '#' > /dev/null
     if [ $? -eq 0 ]; then
-      echo $line
+      echo "  $line"
     fi
-  done < ./config
+  done < $CONFIG_FILENAME
   return 0
 }
 
 stop() {
-  echo 'stop'
+  sudo pfctl -d
   return 0
 }
 
@@ -24,7 +31,8 @@ EOS
 }
 
 version() {
-  echo 'version'
+  echo "ban2hst $VERSION"
+  return 0
 }
 
 main() {
