@@ -1,6 +1,6 @@
 #!/bin/bash
 
-readonly NAME='ban2hst'
+readonly NAME='banhst'
 readonly ROOT_DIR="`pwd`"
 readonly PF_RULE_FILE="$ROOT_DIR/pf.conf"
 readonly CONFIG_FILE="$ROOT_DIR/config"
