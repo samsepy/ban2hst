@@ -7,13 +7,13 @@
 ## Initialize
 
 ```
-git clone https://github.com/samsepy/ban2hst.git ~/.ban2hst
-echo 'export PATH="$PATH:$HOME/.ban2hst"' >> ~/.zshrc
+git clone https://github.com/samsepy/banhst.git ~/.banhst
+echo 'export PATH="$PATH:$HOME/.banhst"' >> ~/.zshrc
 exec $SHELL -l
 ```
 
 ## How to use
 
 - `config` ファイルにアクセス制限したいホストを記述
-- `ban2hst -e` でアクセス制限実行
-- `ban2hst -d` でアクセス制限解除
+- `banhst -e` でアクセス制限実行
+- `banhst -d` でアクセス制限解除
