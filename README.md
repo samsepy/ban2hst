@@ -1,4 +1,4 @@
-# banhst (for Mac )
+# banhst (for Mac)
 
 ## インターネットを封印してライバルに差をつけろ
 
